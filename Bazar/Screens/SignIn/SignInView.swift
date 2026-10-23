@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct SignInView: View {
+    @Environment(AuthRouter.self) private var authRouter
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button("Sign Up") {
+                authRouter.navigate(to: .signUp)
+            }
+            Button("Forgot Password") {
+                authRouter.navigate(to: .forgotPassword)
+            }
+        }
     }
 }
 

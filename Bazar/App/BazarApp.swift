@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct BazarApp: App {
+
+    @State private var appRouter: AppRouter
+    
+    init() {
+        appRouter = AppRouter()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environment(appRouter)
         }
     }
 }

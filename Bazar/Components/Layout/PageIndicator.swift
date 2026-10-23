@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct PageIndicator: View {
+    let totalPages: Int
+    let currentPage: Int
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing: 4) {
+            ForEach(0..<totalPages, id: \.self) { index in
+                let isActive = index == currentPage
+
+                Circle()
+                    .fill(isActive ? Color.primary500 : Color.gray200)
+                    .frame(width: isActive ? 8 : 4, height: isActive ? 8 : 4)
+            }
+        }
+        .animation(.spring(), value: currentPage)
     }
 }
 
 #Preview {
-    PageIndicator()
+    PageIndicator(totalPages: 3, currentPage: 0)
 }
