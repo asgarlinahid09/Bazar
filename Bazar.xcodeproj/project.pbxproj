@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FF6828D530907D850045BFD7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FF6828D430907D850045BFD7 /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FFF392A53089F10A00BB934C /* Bazar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bazar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF6828D530907D850045BFD7 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = Bazar;
 			packageProductDependencies = (
+				FF6828D430907D850045BFD7 /* FirebaseAuth */,
 			);
 			productName = Bazar;
 			productReference = FFF392A53089F10A00BB934C /* Bazar.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = FFF3929C3089F10A00BB934C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FF6828D330907D850045BFD7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FFF392A63089F10A00BB934C /* Products */;
 			projectDirPath = "";
@@ -347,6 +356,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF6828D330907D850045BFD7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF6828D430907D850045BFD7 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF6828D330907D850045BFD7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FFF3929D3089F10A00BB934C /* Project object */;
 }

@@ -9,23 +9,24 @@ import SwiftUI
 
 enum AuthRoute: Hashable {
     case signUp
+    case signUpSuccess
     case forgotPassword
 }
 
 @Observable
 final class AuthRouter {
     var path = NavigationPath()
-    
-    func navigate(to destination: AuthRoute){
+
+    func navigate(to destination: AuthRoute) {
         path.append(destination)
     }
-    
-    func navigateBack(){
-        guard !path.isEmpty else {return}
+
+    func navigateBack() {
+        guard !path.isEmpty else { return }
         path.removeLast()
     }
-    
-    func navigateToRoot(){
+
+    func navigateToRoot() {
         path = NavigationPath()
     }
 }

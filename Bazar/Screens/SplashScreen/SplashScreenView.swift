@@ -13,8 +13,7 @@ struct SplashScreenView: View {
             Color.primary500
             HStack(spacing: 13) {
                 Image(.splash)
-                    .resizable()
-                    .frame(width: 38, height: 38)
+                    .fitted(maxSize: 38)
                     .foregroundStyle(.white)
                 
                 Text("Bazar.")

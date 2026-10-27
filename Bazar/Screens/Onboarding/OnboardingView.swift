@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    let onFinish: () -> Void
+    @Environment(AppRouter.self) private var appRouter
 
     @State private var currentPage = 0
     private let pages = OnboardingPage.pages
@@ -31,15 +31,8 @@ struct OnboardingView: View {
 
 
     private var skipButton: some View {
-        Button {
-            onFinish()
-        } label: {
-            Text("Skip")
-                .font(.robotoMedium(14))
-                .foregroundStyle(.primary500)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .contentShape(Rectangle())
+        AppTagButton(title: "Skip") {
+            appRouter.finishOnboarding()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 24)
@@ -60,22 +53,15 @@ struct OnboardingView: View {
     private func pageContent(_ page: OnboardingPage) -> some View {
         VStack(spacing: 0) {
             Image(page.imageName)
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 320, maxHeight: 320)
+                .fitted(maxSize: 320)
                 .padding(.top, 13)
 
             Text(page.title)
-                .font(.openSansBold(24, relativeTo: .title))
-                .foregroundStyle(.gray900)
-                .multilineTextAlignment(.center)
+                .appText(.h3 ,color: .gray900, alignment: .center)
                 .padding(.top, 14)
 
             Text(page.description)
-                .font(.robotoRegular(16))
-                .foregroundStyle(.gray500)
-                .multilineTextAlignment(.center)
-                .lineSpacing(4)
+                .appText(.body16, color: .gray500, alignment: .center)
                 .frame(maxWidth: 292)
                 .padding(.top, 11)
         }
@@ -85,26 +71,11 @@ struct OnboardingView: View {
 
     private var buttons: some View {
         VStack(spacing: 8) {
-            Button {
+            AppButton(title: isLastPage ? "Get Started" : "Continue") {
                 continueTapped()
-            } label: {
-                Text(isLastPage ? "Get Started" : "Continue")
-                    .font(.openSansBold(16))
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 56)
-                    .background(.primary500, in: RoundedRectangle(cornerRadius: 12))
             }
-
-            Button {
-                onFinish()
-            } label: {
-                Text("Sign in")
-                    .font(.openSansBold(16))
-                    .foregroundStyle(.primary500)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 56)
-                    .background(.primary50, in: RoundedRectangle(cornerRadius: 12))
+            AppButton(title: "Sign in", style: .secondary) {
+                appRouter.finishOnboarding()
             }
         }
         .padding(.horizontal, 24)
@@ -112,7 +83,7 @@ struct OnboardingView: View {
 
     private func continueTapped() {
         if isLastPage {
-            onFinish()
+            appRouter.finishOnboarding()
         } else {
             withAnimation {
                 currentPage += 1
@@ -122,5 +93,6 @@ struct OnboardingView: View {
 }
 
 #Preview {
-    OnboardingView(onFinish: {})
+    OnboardingView()
+        .environment(AppRouter())
 }

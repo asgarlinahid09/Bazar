@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AuthFlowView: View {
     @State private var authRouter = AuthRouter()
+
     var body: some View {
         NavigationStack(path: $authRouter.path) {
             SignInView()
@@ -16,6 +17,8 @@ struct AuthFlowView: View {
                     switch destination {
                     case .signUp:
                         SignUpView()
+                    case .signUpSuccess:
+                        SignUpSuccessView()
                     case .forgotPassword:
                         ForgotPasswordView()
                     }
